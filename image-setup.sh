@@ -109,10 +109,10 @@ rm -rf /adsb/update
 git clone --depth 1 https://github.com/ADSB-One/adsb-update.git /adsb/update
 rm -rf /adsb/update/.git
 
-bash /adsb/update/update-adsbx.sh
+bash /adsb/update/update-adsb.sh
 
 git clone --depth 1 https://github.com/ADSB-One/adsb-webconfig.git
-pushd adsbx-webconfig
+pushd adsb-webconfig
 bash install.sh
 popd
 
