@@ -14,7 +14,7 @@ if [[ -z $1 ]] || [[ -z $2 ]]; then
 fi
 if [[ $2 =~ ^[0-9]*[0-9]\.[0-9]$ ]]; then
     version="$2.$(date +%y%m%d -d now)"
-    image="adsbx-$version.img"
+    image="adsb-$version.img"
 else
     image="$2"
     if [[ -n $3 ]] && [[ $3 =~ ^[0-9]*[0-9]\.[0-9]$ ]]; then
@@ -38,10 +38,10 @@ if true; then
     ./mount.sh "${image}"
 fi
 
-echo "$version" > root/boot/adsbx-version
+echo "$version" > root/boot/adsb-version
 
-mkdir -p root/adsbexchange/image-setup
-init=/adsbexchange/image-setup/image-setup.sh
+mkdir -p root/adsb/image-setup
+init=/adsb/image-setup/image-setup.sh
 cp -T -f image-setup.sh "./root/$init"
 env -i /usr/sbin/chroot --userspec=root:root ./root /bin/bash -l "$init"
 
@@ -49,7 +49,7 @@ env -i /usr/sbin/chroot --userspec=root:root ./root /bin/bash -l "$init"
 #rm -rf root/boot/wpa_supplicant.conf
 #rm -rf root/etc/wpa_supplicant/wpa_supplicant.conf
 
-rm -f root/boot/adsbx-uuid
+rm -f root/boot/adsb-uuid
 rm -rf root/var/lib/zerotier-one/identity.*
 rm -rf root/var/lib/zerotier-one/authtoken.secret
 rm -rf root/var/lib/collectd/rrd/*
